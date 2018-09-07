@@ -1,0 +1,21 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+feign:
+  hystrix:
+    enabled: true
+     
+eureka:
+  client:
+    enabled: true
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_ADDRESS:http://eureka.yeseer.cn/}
+  instance:
+    #hostname: ${HOSTNAME:localhost}
+    preferIpAddress: true
+
+#cloud:
+#  conablefig:
+#    failFast: true
+#    discovery:
+#      end: true
