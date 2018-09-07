@@ -12,7 +12,7 @@ eureka:
       defaultZone: ${EUREKA_SERVER_ADDRESS:http://eureka.yeseer.cn/}
   instance:
     #hostname: ${HOSTNAME:localhost}
-    preferIpAddress: true
+    preferIpAddress: false
 
 #cloud:
 #  conablefig:
