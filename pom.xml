@@ -61,8 +61,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes</artifactId>
-            <version>${spring-cloud-kubernetes.version}</version>
+            <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>com.squareup.okhttp3</groupId>
@@ -70,6 +69,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
 
     </dependencies>
 
@@ -83,7 +83,13 @@
                 <scope>import</scope>
             </dependency>
 
-
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-kubernetes-dependencies</artifactId>
+                <version>${spring-cloud-kubernetes.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>
