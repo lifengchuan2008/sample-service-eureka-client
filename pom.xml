@@ -61,7 +61,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes-all</artifactId>
+            <artifactId>spring-cloud-starter-kubernetes</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>com.squareup.okhttp3</groupId>
