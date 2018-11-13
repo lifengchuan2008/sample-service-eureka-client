@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.discovery.composite.CompositeDiscoveryClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,7 +48,12 @@ public class SampleServiceApplication {
     public String hello(@RequestParam(value = "service", required = false) String serviceName) {
         String services = discoveryClient.getServices().stream().collect(Collectors.joining(","));
 
+        CompositeDiscoveryClient cd = (CompositeDiscoveryClient) discoveryClient;
 
+        for (DiscoveryClient d : cd.getDiscoveryClients()) {
+            System.out.println("DiscoveryClient: " + d.description());
+
+        }
         return "Hello! This is from " + "! ," + services + " ,client: " + discoveryClient.description();
     }
 }
