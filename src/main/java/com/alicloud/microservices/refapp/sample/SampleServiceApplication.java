@@ -2,6 +2,7 @@ package com.alicloud.microservices.refapp.sample;
 
 import com.alibaba.fastjson.JSON;
 import io.fabric8.kubernetes.api.model.Endpoints;
+import io.fabric8.kubernetes.api.model.Service;
 import io.fabric8.kubernetes.client.KubernetesClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -75,6 +76,14 @@ public class SampleServiceApplication {
         Endpoints endpoints = client.endpoints().withName(serviceName).get();
 
         System.out.println(JSON.toJSONString(endpoints.getSubsets()));
+
+        Service service = client.services().withName(serviceName).get();
+
+        System.out.println("service: " + service);
+
+        if (service != null) {
+            System.out.println("service: " + JSON.toJSONString(service));
+        }
 
 
         return "Hello! This is from " + "! ," + services + " ,client: " + discoveryClient.description();
