@@ -1,0 +1,3 @@
+# Discovery Client Configuration
+org.springframework.cloud.client.discovery.EnableDiscoveryClient=\
+org.springframework.cloud.kubernetes.discovery.KubernetesDiscoveryClientConfiguration
