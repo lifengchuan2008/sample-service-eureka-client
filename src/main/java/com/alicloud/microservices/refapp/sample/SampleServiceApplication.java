@@ -75,7 +75,7 @@ public class SampleServiceApplication {
 
         Endpoints endpoints = client.endpoints().withName(serviceName).get();
 
-        System.out.println(JSON.toJSONString(endpoints.getSubsets()));
+        System.out.println(JSON.toJSONString(endpoints));
 
         Service service = client.services().withName(serviceName).get();
 
