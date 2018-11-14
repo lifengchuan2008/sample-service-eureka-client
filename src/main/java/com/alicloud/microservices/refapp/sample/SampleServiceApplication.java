@@ -54,7 +54,7 @@ public class SampleServiceApplication {
         return "Hello! This is from Sample Service 1!";
     }
 
-    @RequestMapping("/hello")
+    @RequestMapping("/sample/hello")
     public String hello(@RequestParam(value = "service", required = false) String serviceName2) {
         String services = discoveryClient.getServices().stream().collect(Collectors.joining(","));
 
