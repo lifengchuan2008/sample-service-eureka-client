@@ -64,26 +64,6 @@
             <artifactId>spring-cloud-commons</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>3.6.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-kubernetes</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.squareup.okhttp3</groupId>
-                    <artifactId>okhttp3</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-kubernetes-discovery</artifactId>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -96,13 +76,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-kubernetes-dependencies</artifactId>
-                <version>${spring-cloud-kubernetes.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
