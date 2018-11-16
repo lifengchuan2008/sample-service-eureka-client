@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8089
 
 feign:
   hystrix:
@@ -9,7 +9,7 @@ eureka:
   client:
     enabled: true
     serviceUrl:
-      defaultZone: ${EUREKA_SERVER_ADDRESS:http://eureka.yeseer.cn/eureka/}
+      defaultZone: http://localhost:8080/eureka
   instance:
     #hostname: ${HOSTNAME:localhost}
     preferIpAddress: false

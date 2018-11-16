@@ -1,18 +1,12 @@
 package com.alicloud.microservices.refapp.sample;
 
-import com.alibaba.fastjson.JSON;
-import io.fabric8.kubernetes.api.model.Endpoints;
-import io.fabric8.kubernetes.api.model.Service;
-import io.fabric8.kubernetes.client.KubernetesClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.DefaultServiceInstance;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.discovery.composite.CompositeDiscoveryClient;
-import org.springframework.cloud.kubernetes.discovery.KubernetesDiscoveryProperties;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +48,7 @@ public class SampleServiceApplication {
         return "Hello! This is from Sample Service 1!";
     }
 
-    @RequestMapping("/sample/hello")
+    @RequestMapping("/hello")
     public String hello(@RequestParam(value = "service", required = false) String serviceName2) {
         String services = discoveryClient.getServices().stream().collect(Collectors.joining(","));
 
