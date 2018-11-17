@@ -1,5 +1,6 @@
 package com.alicloud.microservices.refapp.sample;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,13 +9,16 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.discovery.composite.CompositeDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -24,6 +28,8 @@ import java.util.stream.Collectors;
 public class SampleServiceApplication {
 
     private static final String HOSTNAME = "HOSTNAME";
+
+    private AtomicInteger count = new AtomicInteger(0);
 
     @Autowired
     private DiscoveryClient discoveryClient;
@@ -49,18 +55,15 @@ public class SampleServiceApplication {
     }
 
     @RequestMapping("/hello")
-    public String hello(@RequestParam(value = "service", required = false) String serviceName2) {
-        String services = discoveryClient.getServices().stream().collect(Collectors.joining(","));
+    @ResponseBody
+    public ResponseEntity hello(@RequestParam(value = "service", required = false) String serviceName2) {
 
-        CompositeDiscoveryClient cd = (CompositeDiscoveryClient) discoveryClient;
-
-        for (DiscoveryClient d : cd.getDiscoveryClients()) {
-            System.out.println("DiscoveryClient: " + d.description());
-
-        }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("test", "sdsdf");
+        jsonObject.put("demo", "demo");
+        jsonObject.put("count", count.incrementAndGet());
 
 
-
-        return "Hello! This is from " + "! ," + services + " ,client: " + discoveryClient.description();
+        return ResponseEntity.ok(jsonObject);
     }
 }
